@@ -1,0 +1,17 @@
+div {
+    width: 33vw;
+    padding: 8px;
+    border: solid 2px Black;
+}
+img {
+    width: 100%;
+}
+input {
+    margin-bottom: 8px;
+}
+
+#ageSection {
+    background-color: lightgray;
+    border: 1px solid grey;
+    width: calc(100% - 16px);
+}
