@@ -1,10 +1,10 @@
 <div>
     <img [src]="User.photo" [alt]="User.firstName" />
-
-    <h2>Nom : {{ User.name }}</h2>
-    <h2>Prénom : {{ User.firstName }}</h2>
     
-    <p>{{ User.quote }}</p>    
+    <h2>Prénom : {{ User.firstName }}</h2>
+    <h2>Nom : {{ User.name }}</h2>
+    
+    <p>Commentaire : {{ User.quote }}</p>    
     <label for="quote"></label>
     <input id="quote" [(ngModel)]="User.quote">
 

@@ -9,11 +9,11 @@ import { User } from '../user';
 export class UserProfileComponent implements OnInit {  
 
   User: User = {
-    name : 'Doe',
-    firstName : 'John',
+    name : 'Brogniart',
+    firstName : 'Denis',
     age : 25,
     quote : '',
-    photo : 'https://randomuser.me/api/portraits/lego/2.jpg',
+    photo : 'assets/pictures/denis.jpg',
     isAgeRevealed : false
   };
 
