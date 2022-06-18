@@ -1,0 +1,20 @@
+<div>
+    <img [src]="user.pictureSrc" [alt]="user.firstname + ' ' + user.lastname">
+    <h3>Prénom : {{ user.firstname }}</h3>
+    <h3>Nom : {{ user.lastname }}</h3>
+
+    <button (click)="toggleIsAgeRevealed()">
+        <p *ngIf="!isAgeRevealed">Montrer âge</p>
+        <p *ngIf="isAgeRevealed">Cacher âge</p>
+    </button>
+
+    <p>Âge : 
+        <span *ngIf="isAgeRevealed">{{ user.age }}</span>        
+        <span *ngIf="!isAgeRevealed">Caché</span>
+    </p>
+
+    <p>Citation : {{ user.quote }}</p>
+
+    <label for="quote">Editer la citation :</label>
+    <input type="text" [(ngModel)]="user.quote" id="quote" >
+</div>
