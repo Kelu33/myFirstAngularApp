@@ -9,7 +9,6 @@ import { User } from '../models/user.model';
 export class SignUpComponent implements OnInit {
 
   user: User = new User('','','','');
-  isSubmitted: boolean = false;
 
   constructor() { }
 
@@ -18,11 +17,6 @@ export class SignUpComponent implements OnInit {
 
   onSubmit(): void {
     console.log(this.user);
-    this.isSubmitted = true;
-  }
-
-  onReset(): void {
-    this.isSubmitted = false;
   }
 
 }

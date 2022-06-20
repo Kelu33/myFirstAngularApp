@@ -1,0 +1,31 @@
+form {
+    width: 420px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 8px;
+    margin: 8px;
+    box-shadow: 0 0 3px 3px gray;
+    border-radius: 3px;
+    min-height: 257px;
+    background-color: #bada55;
+}
+
+div {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 8px;
+}
+div:last-child {
+    margin-top: 8px;
+}
+
+label {
+    width: 30%;
+}
+
+input {
+    width: calc(70% - 8px);
+}
+
