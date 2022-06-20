@@ -10,7 +10,7 @@ export class CreateOnomatopiaComponent implements OnInit {
   public newOnomatopia: string = '';
 
   @Output()
-  public sendOnomatopiaToParent: EventEmitter<any> = new EventEmitter();
+  public sendOnomatopiaToParent: EventEmitter<string> = new EventEmitter();
 
   constructor() { }
 
