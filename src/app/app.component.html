@@ -1,1 +1,10 @@
 <h1>Bienvenue sur le site de {{ title }} !</h1>
+
+<ul>
+    <li *ngFor="let onomatopia of onomatopoeias">
+        {{ onomatopia }}
+    </li>
+</ul>
+<app-create-onomatopia
+(sendOnomatopiaToParent)="onReceiveNewOnomatopia($event)">
+</app-create-onomatopia>
