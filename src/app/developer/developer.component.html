@@ -8,4 +8,12 @@
     <p>Bio : {{ developer.bio }}</p>
 </div>
 
-<app-skill [skills]="developer.skills"></app-skill>
+<div class="skill">
+    <ul>
+        <li *ngFor="let skill of developer.skills">
+            <app-skill [skill]="skill"></app-skill>    
+        </li>        
+    </ul>
+</div>
+
+

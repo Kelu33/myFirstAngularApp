@@ -9,7 +9,7 @@ import { Skill } from '../models/skill.model';
 export class SkillComponent implements OnInit {
   
   @Input()
-  skills: any;
+  skill: any;
 
   constructor() { }
 
