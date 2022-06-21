@@ -1,1 +1,43 @@
-<p>search-movie works!</p>
+<form (ngSubmit)="movieForm.valid && onSubmit()" [formGroup]="movieForm" #myForm="ngForm">
+
+    <div>
+        Form submitted ? {{myForm.submitted}}
+        Form valid ? {{movieForm.valid}}
+        Form invalid ? {{!movieForm.valid}}
+      </div>
+
+    <ng-container formGroupName="idTitle">
+        <label for="identifier">Identifier: </label>
+        <input id="identifier" type="text" formControlName="identifier">  
+
+        <div *ngIf="movieForm.controls.idTitle.errors">
+            <span *ngIf="movieForm.controls.idTitle.errors['required']">Le champ ID est requis</span>
+        </div>
+
+        <label for="title">Title: </label>
+        <input id="title" type="text" formControlName="title">
+    </ng-container>
+    
+    <label for="types">Choose a Type:</label>
+    <select name="types" id="types" formControlName="types">
+        <ng-container *ngFor="let type of types">            
+            <option [value]="type">{{ type }}</option>
+        </ng-container>        
+    </select>
+
+    <label for="release-year">Choose a year :</label>
+    <input type="number" id="release-year" name="release-year" min="1900" formControlName="releaseYear">
+
+    <label for="sheets">Choose a Sheet:</label>
+    <select name="sheets" id="sheets" formControlName="sheets">
+        <ng-container *ngFor="let sheet of sheets">            
+            <option [value]="sheet">{{ sheet }}</option>
+        </ng-container>        
+    </select>
+
+    <div>
+        <button type="reset">Reset</button>
+        <button type="submit">Submit</button>
+    </div>
+
+</form>

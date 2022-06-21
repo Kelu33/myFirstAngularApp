@@ -8,28 +8,38 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class SearchMovieComponent implements OnInit {
 
-  movieForm2 = this.formbuilder.group({
-    id: this.formbuilder.group({
-      identifier: [''],
-      title: [''],
-    }, { validator: this.requireOne }),
-    type: this.formbuilder.array([
-      [''], [''], ['']
-    ]),
-    releaseYear: [''],
-    sheet: this.formbuilder.array([
-      [''], ['']
-    ])
+  types: string[] = ['movie', 'show', 'episode'];
+  sheets: string[] = ['complete', 'short'];
+
+  movieForm = this.formbuilder.group({
+
+    idTitle: this.formbuilder.group({      
+      identifier: ['', Validators.required],
+      title: ['', Validators.required]
+
+    }, {validator: this.requireOne()}),
+
+    types: ['', Validators.required],
+
+    releaseYear: ['',
+    [ Validators.required, Validators.min(1900), Validators.max(new Date().getFullYear()) ]
+    ],
+
+    sheets: ['', Validators.required]
   });
 
-  constructor(
-    private formbuilder: FormBuilder
-    ) { }
+  constructor( private formbuilder: FormBuilder ) { }
 
   ngOnInit(): void {
   }
 
-  requireOne(): any {
+  onSubmit(): void {
+    console.warn(this.movieForm.value);
+
+  }
+
+  requireOne(): void {
+    console.log('TODO');
     
   }
 
