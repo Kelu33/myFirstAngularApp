@@ -1,0 +1,8 @@
+<button [ngStyle]="{'background-color': style.color}">
+    {{ style.innerHtml + index }} 
+    <span 
+        *ngIf="style.icon.isVisible" 
+        [innerHTML]="style.icon.hexCode"
+        >
+    </span>    
+</button>
