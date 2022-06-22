@@ -10,7 +10,7 @@ export class AppComponent {
 
   public onomatopoeias: string[] = ['whoosh', 'purr'];
 
-  onReceiveNewOnomatopia($event: any): void {
+  onReceiveNewOnomatopia($event: string): void {
     this.onomatopoeias.push($event);
   };
 
