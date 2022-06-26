@@ -18,6 +18,11 @@ export function isRequiredValidator(ctr1Name: string, ctr2Name: string) {
 
 export function rangeDateValidator(min: number, max: number) {
   return (control: AbstractControl) => {
-    control.addValidators([Validators.required, Validators.min(min), Validators.max(max)]);
+    control.addValidators(
+      [
+        Validators.required,
+        Validators.min(min),
+        Validators.max(max)]
+    );
   }
 }

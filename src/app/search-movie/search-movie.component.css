@@ -2,9 +2,29 @@ form {
     width: 350px;
     display: flex;
     flex-direction: column;
-    align-items: stretch;
+    justify-content: space-between;
+    background-color: #bada55;
+    padding: 1.2rem 2.4rem;
+    border-radius: 5px;
+    min-height: 340px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-input {
+input, select {
+    margin: 0;
     width: 100%;
+}
+
+.buttons-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-top: 1.2rem;
+}
+
+button {
+    font-weight: bold;
+    border: none;
+    border-radius: 500px;
+    padding: 0.6rem 1.2rem;
 }
