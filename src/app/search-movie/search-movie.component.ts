@@ -24,7 +24,7 @@ export class SearchMovieComponent implements OnInit {
     { min: this.minYear, max: this.currentYear }
   ).group;
 
-  initialValues: FormControl = new FormControl;
+  initialValues: FormControl = new FormControl();
 
   constructor( private formbuilder: FormBuilder ) { }
 
