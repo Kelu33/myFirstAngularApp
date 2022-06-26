@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, FormControl } from '@angular/forms';
-import { isRequiredValidator, rangeDateValidator } from '../customValidator';
+import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { MovieForm } from '../models/movie-form.model';
 
 @Component({
   selector: 'app-search-movie',
@@ -18,28 +18,24 @@ export class SearchMovieComponent implements OnInit {
   sheetsList: string[] = ['complète', 'courte'];
   defaultSheet: string = 'courte';
 
-  movieForm: FormGroup =this.formbuilder.group(
-    {
-      head: this.formbuilder.group(
-        {
-          identifier: [''],
-          title: ['']
-        }, { validators: isRequiredValidator('identifier', 'title') }      
-      ),
-      types: ['','',''],
-      releaseYear: ['', rangeDateValidator(this.minYear, this.currentYear)],
-      sheets: ['','']
-    }
-  );
+  movieForm: FormGroup = new MovieForm(
+    this.formbuilder,
+    { ctr1: 'identifier', ctr2: 'title'},
+    { min: this.minYear, max: this.currentYear }
+  ).group;
 
   initialValues: FormControl = new FormControl;
 
-  constructor(private formbuilder: FormBuilder) { }
+  constructor( private formbuilder: FormBuilder ) { }
 
   ngOnInit(): void {
     this.types.setValue(this.defaultType);
     this.sheets.patchValue(this.defaultSheet);
     this.initialValues = this.movieForm.value;
+
+    this.movieForm.valueChanges.subscribe(value => {
+      console.log(this.prettyJson(value));
+    });
   }
 
   onSubmit(): void {

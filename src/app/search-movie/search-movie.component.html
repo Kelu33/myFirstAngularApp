@@ -1,36 +1,33 @@
-<form
-    (ngSubmit)="onSubmit()"
-    (reset)="onReset()" 
-    [formGroup]="movieForm"  
-    #myForm="ngForm">
-
+<form 
+    (ngSubmit)="onSubmit()" (reset)="onReset()"
+    [formGroup]="movieForm" #myForm="ngForm" 
+    >
     <ng-container formGroupName="head">
         <div>
             <label for="head-identifier">Identifiant : </label>
-            <input
-                name="head-identifier" id="head-identifier"
-                formControlName="identifier" >
+            <input id="head-identifier" formControlName="identifier">
         </div>
         <div>
             <label for="head-title">Titre : </label>
-            <input name="head-title" id="head-title" formControlName="title" >
+            <input id="head-title" formControlName="title">
         </div>
     </ng-container>
 
     <div
         *ngIf="movieForm.controls['head'].errors && myForm.submitted"
-        [ngStyle]="{'color': 'brown'}">
-        L'un des deux champs 'Identifiant' ou 'Titre' doit être renseigné
+        [ngStyle]="{'color': 'brown'}"
+        >
+        <p>L'un des deux champs 'Identifiant' ou 'Titre' doit être renseigné</p>
     </div>
 
     <div>
-        <label for="type-select">Type : </label>
-        <select name="types" id="type-select" formControlName="types">
+        <label for="types">Type : </label>
+        <select id="types" formControlName="types">
             <option
                 *ngFor="let t of typesList"
                 [selected]="t === defaultType"
                 [value]="t"
-            >{{ t }}</option>
+                >{{ t }}</option>
         </select>               
     </div>
 
@@ -38,25 +35,25 @@
         <label for="releaseYear">Année de sortie : </label>
         <input
             type="number" 
-            id="releaseYear" 
-            name="releaseYear"
+            id="releaseYear"
             min="1899"
-            formControlName="releaseYear">
+            formControlName="releaseYear"
+            >
         <div 
             *ngIf="movieForm.controls['releaseYear'].errors && myForm.submitted"
             [ngStyle]="{'color': 'brown'}">
-            L'année doit être comprise entre {{ minYear }} et {{ currentYear }}
+            <p>L'année doit être comprise entre {{ minYear }} et {{ currentYear }}</p>
         </div>
     </div>
-    
+
     <div *ngIf="movieForm.get('head')?.get('identifier')?.value">
-        <label for="sheet-select">Fiche : </label>
-        <select name="sheets" id="sheet-select" formControlName="sheets">   
+        <label for="sheets">Fiche : </label>
+        <select id="sheets" formControlName="sheets">   
             <option
                 *ngFor="let s of sheetsList"
                 [selected]="s === defaultSheet"
                 [value]="s"
-            >{{ s }}</option>
+                >{{ s }}</option>
         </select>
     </div>
 
@@ -65,10 +62,10 @@
         <button type="submit">Sauvegarder</button>
     </div>
 
-  </form>
+</form>
 
-  <div *ngIf="myForm.submitted">
-      <p>Form valid ? {{movieForm.valid}}</p>
-      <p>Form value: </p>
-      <pre>{{ prettyJson(myForm.value) }}</pre>
-  </div>
+<div *ngIf="myForm.submitted">
+    <p>Form valid ? {{movieForm.valid}}</p>
+    <p>Form value: </p>
+    <pre>{{ prettyJson(myForm.value) }}</pre>
+</div>

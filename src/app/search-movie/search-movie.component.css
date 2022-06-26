@@ -8,15 +8,17 @@ form {
     border-radius: 5px;
     min-height: 340px;
     font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
 }
 
-input, select {
-    margin: 0;
-    width: 100%;
+div {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
 }
 
 .buttons-wrap {
-    display: flex;
+    flex-direction: row;
     justify-content: space-between;
     align-items: flex-end;
     padding-top: 1.2rem;
