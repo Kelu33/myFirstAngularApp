@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { isRequiredValidator, rangeDateValidator } from '../customValidator';
 
 @Component({
   selector: 'app-search-movie',
@@ -8,29 +9,44 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class SearchMovieComponent implements OnInit {
 
-  movieForm2 = this.formbuilder.group({
-    id: this.formbuilder.group({
-      identifier: [''],
-      title: [''],
-    }, { validator: this.requireOne }),
-    type: this.formbuilder.array([
-      [''], [''], ['']
-    ]),
-    releaseYear: [''],
-    sheet: this.formbuilder.array([
-      [''], ['']
-    ])
-  });
+  minYear: number = 1900;
+  currentYear: number = new Date().getFullYear();
 
-  constructor(
-    private formbuilder: FormBuilder
-    ) { }
+  movieForm: FormGroup = this.formbuilder.group(
+    {
+      head: this.formbuilder.group(
+        {
+          identifier: [''],
+          title: ['']
+        },
+        { validators: isRequiredValidator('identifier', 'title') }      
+      ),
+      types: this.formbuilder.array(['', '', '']),
+      releaseYear: [
+        '',
+        rangeDateValidator(this.minYear, this.currentYear) 
+      ],
+      sheets: this.formbuilder.array(['',''])
+    }
+  );
+
+  constructor(private formbuilder: FormBuilder) { }
 
   ngOnInit(): void {
+    this.types.patchValue(['film', 'série', 'épisode']);
+    this.sheets.patchValue(['complète', 'courte']);
   }
 
-  requireOne(): any {
-    
+  onSubmit(): void {
+    console.log(JSON.stringify(this.movieForm.value));
   }
+
+  get types() {
+    return this.movieForm.get('types') as FormArray;
+  }
+
+  get sheets() {
+    return this.movieForm.get('sheets') as FormArray;
+  } 
 
 }

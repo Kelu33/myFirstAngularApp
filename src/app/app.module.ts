@@ -8,7 +8,7 @@ import { SearchMovieComponent } from './search-movie/search-movie.component';
 @NgModule({
   declarations: [
     AppComponent,
-    SearchMovieComponent,
+    SearchMovieComponent
   ],
   imports: [
     BrowserModule,

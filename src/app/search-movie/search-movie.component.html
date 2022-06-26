@@ -1,1 +1,47 @@
-<p>search-movie works!</p>
+<form (ngSubmit)="onSubmit()" [formGroup]="movieForm"  #myForm="ngForm">
+
+    <div formGroupName="head">
+        <label for="head-identifier">Identifiant : </label>
+        <input name="head-identifier" id="head-identifier" formControlName="identifier" >
+        <label for="head-title">Titre : </label>
+        <input name="head-title" id="head-title" formControlName="title" >
+    </div>
+    <div *ngIf="movieForm.controls['head'].errors && myForm.submitted">
+        L'un des deux champs 'Identifiant' ou 'Titre' doit être renseigné
+    </div>
+
+    <label for="type-select">Type : </label>
+    <select name="types" id="type-select">
+        <ng-container formArrayName="types">
+            <ng-container *ngFor="let type of types.controls">
+                <option [value]="type.value">{{ type.value }}</option>
+            </ng-container>
+        </ng-container>
+    </select>
+
+    <label for="releaseYear">Année de sortie : </label>
+    <input type="number" id="releaseYear" name="releaseYear" min="1899" formControlName="releaseYear">
+    <div *ngIf="movieForm.controls['releaseYear'].errors && myForm.submitted">
+        L'année doit être comprise entre {{ minYear }} et {{ currentYear }}
+    </div>
+
+    <ng-container *ngIf="movieForm.get('head')?.get('identifier')?.value">
+        <label for="sheet-select">Fiche : </label>
+        <select name="sheets" id="sheet-select">        
+            <ng-container formArrayName="sheets">
+                <ng-container *ngFor="let sheets of sheets.controls">
+                    <option [value]="sheets.value">{{ sheets.value }}</option>
+                </ng-container>
+            </ng-container>
+        </select>
+    </ng-container>
+
+    <button type="reset">Restaurer</button>
+    <button type="submit">Sauvegarder</button>
+
+    <div>
+      Form submitted ? {{myForm.submitted}} <br>
+      Form valid ? {{movieForm.valid}}
+    </div>
+
+  </form>
