@@ -14,37 +14,31 @@ export class SharkComponent implements OnInit {
   ngOnInit(): void {
   }
   ngAfterViewInit(): void {
-    this.appendSong();
+    buildSong();
   }
 
-  buildSong(): HTMLParagraphElement {
-    let words: string[] = [
-      'Baby', 'Mommy', 'Daddy', 'Grandma', 'Grandpa',
-      'shark', 'doo', 'Let\'s go hunt', 'Run away'
-    ];    
-
-    let songP: HTMLParagraphElement = document.createElement('p');
-
-    let song: string = '';
-
-    for(let i = 0; i < 20; i++) {
-      if(i < 5) song += `${words[0]} ${words[5]}, <br>`;
-      else if (i < 10) song += `${words[1]} ${words[5]}, <br>`;
-      else if (i < 15) song += `${words[2]} ${words[5]}, <br>`;
-      else song += `${words[3]} ${words[5]}, <br>`;
-
-    }
-
-    songP.innerHTML = song;
-
-    return songP;
-
-  }
-  appendSong(): void {
-    this.song = this.buildSong();
-
-    document.body.append(this.song);
-
-  }
-
+  
 }
+function buildSong(b=["Baby","Mommy","Daddy","Grandma","Grandpa","Let's go hunt"],a="",c=0){
+  let d=b[c]+" shark";
+  for(let e=0;e<3;e++)a+=d+", doo doo doo doo doo doo \n";
+  a+=d+"!\n";
+  ++c<b.length?buildSong(b,a,c):(a+="Run away,\u2026",console.log(a))
+}
+// function buildSong(
+//   parents = ['Baby', 'Mommy', 'Daddy', 'Grandma', 'Grandpa', 'Let\'s go hunt'],
+//   song = '', i = 0
+//   ) {
+//   let shark = parents[i] + ' shark';
+//   let doo = 'doo doo doo doo doo doo \n';
+//   for (let j = 0; j < 3; j++) song += shark + ', ' + doo;
+
+//   song += shark + '!\n';
+//   i++;
+
+//   if (i < parents.length) buildSong(parents, song, i);
+//   else {
+//     song += 'Run away,…';
+//     console.log(song);
+//   }
+// }
