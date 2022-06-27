@@ -14,31 +14,38 @@ export class SharkComponent implements OnInit {
   ngOnInit(): void {
   }
   ngAfterViewInit(): void {
-    buildSong();
+    song();
   }
 
   
 }
-function buildSong(b=["Baby","Mommy","Daddy","Grandma","Grandpa","Let's go hunt"],a="",c=0){
-  let d=b[c]+" shark";
-  for(let e=0;e<3;e++)a+=d+", doo doo doo doo doo doo \n";
-  a+=d+"!\n";
-  ++c<b.length?buildSong(b,a,c):(a+="Run away,\u2026",console.log(a))
-}
-// function buildSong(
+
+// OG => 455 chars
+// function song(
 //   parents = ['Baby', 'Mommy', 'Daddy', 'Grandma', 'Grandpa', 'Let\'s go hunt'],
-//   song = '', i = 0
-//   ) {
-//   let shark = parents[i] + ' shark';
+//   lyrics = '', i = 0
+//   ) {    
+//   let shark = parents[i];
+//   if (i < parents.length -1) shark += ' shark';
 //   let doo = 'doo doo doo doo doo doo \n';
-//   for (let j = 0; j < 3; j++) song += shark + ', ' + doo;
-
-//   song += shark + '!\n';
+//   for (let j = 0; j < 3; j++) lyrics += shark + ', ' + doo;
+//   lyrics += shark + '!\n';
 //   i++;
-
-//   if (i < parents.length) buildSong(parents, song, i);
+//   if (i < parents.length) song(parents, lyrics, i);
 //   else {
-//     song += 'Run away,…';
-//     console.log(song);
+//     lyrics += 'Run away,…';
+//     console.log(lyrics);
 //   }
 // }
+
+// factorized => 275 chars
+// function song(p=['Baby','Mommy','Daddy','Grandma','Grandpa','Let\'s go hunt'],l='',i=0){    
+//   let s=p[i];
+//   i<p.length-1&&(s+=' shark');
+//   for(let j=0;j<3;j++)l+=s+', doo doo doo doo doo doo \n';
+//   l+=s+'!\n';
+//   ++i<p.length?song(p, l, i):(l+='Run away,…',console.log(l));
+// }
+
+// Minified => 256 chars
+function song(b=["Baby","Mommy","Daddy","Grandma","Grandpa","Let's go hunt"],a="",c=0){let d=b[c];c<b.length-1&&(d+=" shark");for(let e=0;e<3;e++)a+=d+", doo doo doo doo doo doo \n";a+=d+"!\n",++c<b.length?song(b,a,c):(a+="Run away,\u2026",console.log(a))}
