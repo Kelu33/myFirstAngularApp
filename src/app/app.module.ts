@@ -2,19 +2,26 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { ReactiveFormsModule } from '@angular/forms';
-import { SearchMovieComponent } from './search-movie/search-movie.component';
-import { ButtonComponent } from './button/button.component';
+import { SharkComponent } from './shark/shark.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { HomeComponent } from './home/home.component';
+import { WcsComponent } from './wcs/wcs.component';
+import { RouterModule } from '@angular/router';
+import { ROUTES } from './app.routes';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SearchMovieComponent,
-    ButtonComponent,
+    SharkComponent,
+    PageNotFoundComponent,
+    HomeComponent,
+    WcsComponent,
   ],
   imports: [
     BrowserModule,
-    ReactiveFormsModule
+    FormsModule,
+    RouterModule.forRoot(ROUTES) 
   ],
   providers: [],
   bootstrap: [AppComponent]

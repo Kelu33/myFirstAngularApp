@@ -1,8 +1,5 @@
 <h1>Bienvenue sur le site de {{ title }} !</h1>
 
-<app-button 
-    *ngFor="let style of styles; let i = index" 
-    [style]="style"
-    [index]="i + 1">
-</app-button>
+<router-outlet></router-outlet>
 
+<app-shark></app-shark>
