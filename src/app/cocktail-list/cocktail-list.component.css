@@ -1,0 +1,13 @@
+div {
+    width: 300px;
+    border-radius: 3px;
+    padding: 1.2rem 2.4rem;
+    margin: 1.2rem 2.4rem;
+    box-shadow: 0 0 5px 1px grey;
+}
+img {
+    width: 100%;
+}
+p {
+    text-align: end;
+}

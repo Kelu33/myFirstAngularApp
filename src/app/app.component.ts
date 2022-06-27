@@ -1,7 +1,4 @@
 import { Component } from '@angular/core';
-import { share } from 'rxjs';
-import { Icon } from './models/icon.model';
-import { Style } from './models/style.model';
 
 @Component({
   selector: 'app-root',
