@@ -15,6 +15,8 @@ export class SharkComponent implements OnInit {
   }
   ngAfterViewInit(): void {
     song();
+    console.log('------------------------------')    
+    son2();
   }
 
   
@@ -38,14 +40,9 @@ export class SharkComponent implements OnInit {
 //   }
 // }
 
-// factorized => 275 chars
-// function song(p=['Baby','Mommy','Daddy','Grandma','Grandpa','Let\'s go hunt'],l='',i=0){    
-//   let s=p[i];
-//   i<p.length-1&&(s+=' shark');
-//   for(let j=0;j<3;j++)l+=s+', doo doo doo doo doo doo \n';
-//   l+=s+'!\n';
-//   ++i<p.length?song(p, l, i):(l+='Run away,…',console.log(l));
-// }
+// factorized => 251 chars
+const song=(p=['Baby','Mommy','Daddy','Grandma','Grandpa',`Let's go hunt`],l='',i=0)=>{let s=p[i];if(i<p.length-1)s+=' shark';for(let j=0;j<3;j++)l+=`${s}, ${'doo '.repeat(6)}\n`;l+=s+'!\n';++i<p.length?song(p,l,i):(l+='Run away,…',console.log(l));}
 
-// Minified => 256 chars
-function song(b=["Baby","Mommy","Daddy","Grandma","Grandpa","Let's go hunt"],a="",c=0){let d=b[c];c<b.length-1&&(d+=" shark");for(let e=0;e<3;e++)a+=d+", doo doo doo doo doo doo \n";a+=d+"!\n",++c<b.length?song(b,a,c):(a+="Run away,\u2026",console.log(a))}
+
+// With map => 212 chars
+const son2=(p=['Baby','Mommy','Daddy','Grandma','Grandpa',0],l='')=>{p.map(s=>{s?s+=' shark':s=`Let\'s go hunt`;for(let j=0;j<3;j++)l+=`${s}, ${'doo '.repeat(6)}\n`;l+=`${s}!\n`;});l+='Run away,…';console.log(l)}
