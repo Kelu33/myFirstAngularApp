@@ -19,8 +19,6 @@ export class ListKittenComponent implements OnInit {
 
   adoptKitten(k: Kitten): void {
     this.sendKitten.emit(k);
-    // this.kittens = this.kittens.filter(kitten => JSON.stringify(kitten)!==JSON.stringify(k))
-
   }
 
 }

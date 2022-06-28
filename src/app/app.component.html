@@ -11,3 +11,11 @@
 <app-user-kitten
 [kittens]="adoptedKittens"
 ></app-user-kitten>
+
+<div 
+[ngStyle]="{'color': 'brown'}"
+*ngIf="isAlreadyAdopted || isAlreadyCreated"
+>
+    <p *ngIf="isAlreadyAdopted"> Tu as déjà adopté ce chat !</p>
+    <p *ngIf="isAlreadyCreated"> Tu as déjà crées ce chat !</p>
+</div>
