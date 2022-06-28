@@ -2,26 +2,22 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { SharkComponent } from './shark/shark.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { HomeComponent } from './home/home.component';
-import { WcsComponent } from './wcs/wcs.component';
-import { RouterModule } from '@angular/router';
-import { ROUTES } from './app.routes';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CreateKittenComponent } from './create-kitten/create-kitten.component';
+import { ListKittenComponent } from './list-kitten/list-kitten.component';
+import { UserKittenComponent } from './user-kitten/user-kitten.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SharkComponent,
-    PageNotFoundComponent,
-    HomeComponent,
-    WcsComponent,
+    CreateKittenComponent,
+    ListKittenComponent,
+    UserKittenComponent,
   ],
   imports: [
     BrowserModule,
-    FormsModule,
-    RouterModule.forRoot(ROUTES) 
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

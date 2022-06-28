@@ -1,0 +1,17 @@
+<div *ngIf="isDisplay" class="kitten-wrap">
+    <h3>{{ displayedKitten.name }}</h3>
+    <img [src]="displayedKitten.img" [alt]="displayedKitten.name">
+    <p>Né le {{ displayedKitten.birthDate | date:'dd/MM/yyyy' }}</p>
+    <p>Race : {{ displayedKitten.race }}</p>
+</div>
+
+<nav>
+    <h2>Mes Chats : </h2>
+    <div 
+    *ngFor="let kitten of kittens"
+    (mouseenter)="displayKittenInfo(kitten)"
+    (mouseleave)="hideKittenInfo()"
+    >
+        <img [src]="kitten.img" [alt]="kitten.name">
+    </div>
+</nav>

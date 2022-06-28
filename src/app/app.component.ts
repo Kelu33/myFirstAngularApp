@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { Icon } from './models/icon.model';
-import { Style } from './models/style.model';
+import { Kitten } from './models/kitten.model';
 
 @Component({
   selector: 'app-root',
@@ -9,16 +7,33 @@ import { Style } from './models/style.model';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent { 
-  title = 'Lucas';
+  title: string = 'Lucas';
 
-  // styles: Style[] = [
-  //   new Style('blue','Button_'),
-  //   new Style('#fff', 'Button_', new Icon('&#x2192;', true)),
-  //   new Style('#bada55', 'Button_'),
-  //   new Style('grey', 'Button_', new Icon('&#x2192;', false)),
-  //   new Style('green', 'Button_'),
-  // ]
+  adoptedKittens: Kitten[] = [
+    new Kitten(
+      'Fluffy',
+      'pig',
+      new Date('12/6/2017'),
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4N58SDcVpLVoFc_fECHBwqr25ViRhLg_sGr2L84qc&s'
+    ),
+    new Kitten(
+      'Mr. Kitty',
+      'cat',
+      new Date('8/2/2019'),
+      'https://static.wikia.nocookie.net/southpark/images/5/5c/Mrkittybadkitty.gif'
+    )
+  ];
+
+  kittens: Kitten[] = [];
 
   constructor() {}
+
+  receivedKittenToAdopt(k: Kitten): void {
+    this.adoptedKittens.push(k);
+  }
+
+  receivedKittenToCreate(k: Kitten): void {
+    this.kittens.push(k);
+  }
 
 }

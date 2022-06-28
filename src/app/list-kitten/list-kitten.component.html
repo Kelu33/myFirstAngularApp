@@ -1,0 +1,5 @@
+<div *ngFor="let kitten of kittens">
+    <img [src]="kitten.img" [alt]="kitten.name">
+    <p>{{ kitten.birthDate | date:'dd/MM/yyyy' }}</p>
+    <h3><button (click)="adoptKitten(kitten)">Adopter</button> {{ kitten.name }}</h3>    
+</div>
