@@ -10,20 +10,26 @@ export class SharkComponent {
   public lyrics: HTMLParagraphElement = document.createElement('p');
 
   ngAfterViewInit(): void {    
-    this.lyrics.innerHTML = this.s();
+    this.lyrics.innerHTML = this.song();
     document.body.append(this.lyrics);
-    console.log('song function nb of characters : ' + this.charNb(this.S));
+    console.log('S function nb of characters : ' + this.charNb(this.Song));
     console.log('Shark Song :');
-    this.S();
+    this.Song();
   }
 
   charNb(fn: Function): number {
     return fn.toString().length;
   }
 
-  s(p=['Baby','Mommy','Daddy','Grandma','Grandpa',0],l=''){p.map(s=>{s?s+=' shark':s=`Let\'s go hunt`;for(let j=0;j<3;j++)l+=`${s}, ${'doo '.repeat(6)}<br>`;l+=`${s}!<br><br>`;});l+='Run away,…';return l}
+  song = (l='')=>{
+    ['Baby','Mommy','Daddy','Grandma','Grandpa',0].map(s=>{
+      s?s+=' shark':s=`Let\'s go hunt`
+      l+=`${s}, ${'doo '.repeat(6)}<br>`.repeat(3)+s+`!<br><br>`
+    })
+    return l+='Run away,…'
+  }
 
-  S(p=['Baby','Mommy','Daddy','Grandma','Grandpa',0],l=''){p.map(s=>{s?s+=' shark':s=`Let\'s go hunt`;for(let j=0;j<3;j++)l+=`${s}, ${'doo '.repeat(6)}\n`;l+=`${s}!\n`;});l+='Run away,…';console.log(l)}
+  Song(l=''){['Baby','Mommy','Daddy','Grandma','Grandpa',0].map(s=>{s?s+=' shark':s=`Let\'s go hunt`;l+=`${s}, ${'doo '.repeat(6)}\n`.repeat(3);l+=`${s}!\n`;});console.log(l+='Run away,…')}
 }
 
 // OG => 455 chars
