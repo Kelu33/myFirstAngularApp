@@ -1,3 +1,53 @@
-<form (ngSubmit)="onSubmit()">
+<form (ngSubmit)="onSubmit()" #userForm="ngForm">
+
+    <div>
+        <label>
+            Username:
+            <input type="text" [formControl]="userName">
+        </label>
+    </div>
+
+    <div>
+        <label>
+            Email:
+            <input type="text" [formControl]="userEmail">
+        </label>
+    </div>
+
+    <div>
+        <label>
+            Password:
+            <input type="password" [formControl]="userPassword">
+        </label>
+    </div>
+
+    <div [formGroup]="userAddress">
+    Address:
+        <label>
+            Road:
+            <input type="text" formControlName="road">
+        </label>
+        <label>
+            Zip-code:
+            <input type="text" formControlName="zipCode">
+        </label>
+        <label>
+            City:
+            <input type="text" formControlName="city">
+        </label>
+    </div>
     
+    <button type="submit">submit</button>
 </form>
+
+<div *ngIf="userForm.submitted">
+    <h2>name: {{ newUser.name }}</h2>
+    <h3>email: {{ newUser.email }}</h3>
+    <h3>passowrd: {{ newUser.passowrd }}</h3>
+    <h3>address:</h3>
+    <ul>
+        <li>road: {{ newUser.address.road }}</li>
+        <li>zip-code: {{ newUser.address.zipCode }}</li>
+        <li>city: {{ newUser.address.city }}</li>
+    </ul>
+</div>
