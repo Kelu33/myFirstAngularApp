@@ -1,28 +1,34 @@
-<form (ngSubmit)="onSubmit()" #userForm="ngForm">
-
+<form
+ (ngSubmit)="onSubmit()"
+ [formGroup]="userForm" #form="ngForm"
+ >
     <div>
         <label>
             Username:
-            <input type="text" [formControl]="userName">
+            <input type="text" formControlName="userName">
         </label>
     </div>
 
-    <div>
-        <label>
-            Email:
-            <input type="text" [formControl]="userEmail">
-        </label>
+    <div formGroupName="credentials">
+        Credentials :
+        <div>
+            <label>
+                Email:
+                <input type="text" formControlName="userEmail">
+            </label>
+        </div>
+    
+        <div>
+            <label>
+                Password:
+                <input type="password" formControlName="userPassword">
+            </label>
+        </div>
     </div>
 
-    <div>
-        <label>
-            Password:
-            <input type="password" [formControl]="userPassword">
-        </label>
-    </div>
 
-    <div [formGroup]="userAddress">
-    Address:
+    <div formGroupName="userAddress">
+        Address:
         <label>
             Road:
             <input type="text" formControlName="road">
@@ -40,14 +46,6 @@
     <button type="submit">submit</button>
 </form>
 
-<div *ngIf="userForm.submitted">
-    <h2>name: {{ newUser.name }}</h2>
-    <h3>email: {{ newUser.email }}</h3>
-    <h3>passowrd: {{ newUser.passowrd }}</h3>
-    <h3>address:</h3>
-    <ul>
-        <li>road: {{ newUser.address.road }}</li>
-        <li>zip-code: {{ newUser.address.zipCode }}</li>
-        <li>city: {{ newUser.address.city }}</li>
-    </ul>
+<div *ngIf="form.submitted">
+    <pre>Credentials: {{ newCredentials }}</pre>    
 </div>

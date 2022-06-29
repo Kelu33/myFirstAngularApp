@@ -9,6 +9,10 @@ form {
     border-radius: 3px;
 }
 
+pre {
+    margin: 0.8rem;
+}
+
 label, div, input {
     width: 100%;
 }

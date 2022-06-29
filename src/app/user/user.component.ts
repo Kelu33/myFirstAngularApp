@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { Address } from '../models/address.model';
-import { User } from '../models/user.model';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-user',
@@ -10,19 +8,20 @@ import { User } from '../models/user.model';
 })
 export class UserComponent implements OnInit {
 
-  userName: FormControl = new FormControl('');
-
-  userEmail: FormControl = new FormControl('');
-
-  userPassword: FormControl = new FormControl('');
-
-  userAddress: FormGroup = this.formBuilder.group({
-    road: [''],
-    zipCode: [''],
-    city: ['']
+  userForm: FormGroup = this.formBuilder.group({
+    userName: [''],
+    credentials: this.formBuilder.group({
+      userEmail: [''],
+      userPassword: ['']
+    }),
+    userAddress: this.formBuilder.group({
+      road: [''],
+      zipCode: [''],
+      city: ['']
+    })
   });
 
-  newUser: User = new User('','','',new Address('','',''));
+  newCredentials: string ='';
 
   constructor(private formBuilder: FormBuilder) { }
 
@@ -30,16 +29,10 @@ export class UserComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.newUser = new User(
-      this.userName.value,
-      this.userEmail.value,
-      this.userPassword.value,
-      new Address(
-        this.userAddress.controls['road'].value,
-        this.userAddress.controls['zipCode'].value,
-        this.userAddress.controls['city'].value
-      )
-    );    
+    this.newCredentials = JSON.stringify(
+      this.userForm.value.credentials,
+      null, 1
+    );       
   }
 
 }
