@@ -2,6 +2,7 @@
  (ngSubmit)="onSubmit()"
  [formGroup]="userForm" #form="ngForm"
  >
+ <p>form.valid ? {{ form.valid }}</p>
     <div>
         <label>
             Username:
@@ -16,6 +17,16 @@
                 Email:
                 <input type="text" formControlName="userEmail">
             </label>
+            <ng-container *ngIf="!form.valid && form.submitted">
+                <div>
+                    <p 
+                    [hidden]="!userForm.get('credentials.userEmail')?.errors?.['required']"
+                    >Email requis !</p>
+                    <p 
+                    [hidden]="!userForm.get('credentials.userEmail')?.errors?.['email']"
+                    >{{ userForm.get('credentials.userEmail')?.errors?.['email']?.['rules'] }}</p>
+                </div>
+            </ng-container>
         </div>
     
         <div>

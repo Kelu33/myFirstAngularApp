@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { emailValidator } from '../email-validator';
 
 @Component({
   selector: 'app-user',
@@ -11,7 +12,7 @@ export class UserComponent implements OnInit {
   userForm: FormGroup = this.formBuilder.group({
     userName: [''],
     credentials: this.formBuilder.group({
-      userEmail: [''],
+      userEmail: ['', [Validators.required, emailValidator]],
       userPassword: ['']
     }),
     userAddress: this.formBuilder.group({
