@@ -1,37 +1,25 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { refValidator } from './custom-validators';
-import { Article } from './models/article.model';
+import { Component, OnInit } from '@angular/core';
+import { NasaService } from './nasa.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent { 
+export class AppComponent implements OnInit { 
   title = 'Lucas';
 
-  articlesList: Article[] = [];
+  imgOfTheDay: string = '';
 
-  articleForm: FormGroup = this.formBuilder.group({
-    ref: ['', [Validators.required, refValidator]],
-    name: ['', Validators.required],
-    description: ['', Validators.required]
+  constructor( private nasaService: NasaService ) {}
 
-  })
+  ngOnInit(): void {
+    this.nasaService.getImageOfTheDay().subscribe(
+      (param: string) => {
+        this.imgOfTheDay = param;
+      }
+    );
 
-  constructor( private formBuilder: FormBuilder ) {}
-
-  onSubmit(): void {
-    if (this.articleForm.valid) {
-      const controls = this.articleForm.controls;
-      this.articlesList.push(
-        new Article(
-          controls['ref'].value,
-          controls['name'].value,
-          controls['description'].value
-        )
-      )
-    }
   }
+
 }
