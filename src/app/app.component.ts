@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { LogInterceptor } from './core/log.interceptor';
 import { Character } from './models/character-model';
 import { characterId } from './models/characterId.model';
 import { RickService } from './rick.service';
@@ -15,20 +14,16 @@ export class AppComponent implements OnInit {
 
   characters: characterId[] = [];
 
-  selected: string = '1';
-
-  character = new Character('','','','','');
+  character: Character = new Character('','','','','');
 
   characterSelect: FormGroup = this.formBuilder.group(
-    {
-      nb: ['']
-    }
+    { nb: ['1'] }
   )
 
   constructor( 
     private rick: RickService,
     private formBuilder: FormBuilder
-    ) {}
+  ) {}
 
   ngOnInit(): void {
     this.rick.getCharacter('1').subscribe(
@@ -51,4 +46,5 @@ export class AppComponent implements OnInit {
       }
     );
   }
+
 }

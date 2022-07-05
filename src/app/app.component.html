@@ -3,7 +3,7 @@
 <form [formGroup]="characterSelect">
     <label>
         Choose a character : 
-        <select (change)="onChange()" [(ngModel)]='selected' formControlName="nb">                            
+        <select (change)="onChange()" selectedIndex='1' formControlName="nb">                            
             <option 
             *ngFor="let char of characters"
             [value]="char.id"
