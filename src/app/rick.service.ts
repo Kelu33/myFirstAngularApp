@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { Character } from './models/character-model';
+import { characterId } from './models/characterId.model';
 
 @Injectable({
   providedIn: 'root'
@@ -33,13 +34,13 @@ export class RickService {
     return obs.pipe( map(treatement));
   }
 
-  getCharactersIdsAndNames(): Observable<Object[]> {
+  getCharactersIdsAndNames(): Observable<characterId[]> {
 
     const obs: Observable<any> = this.http.get(this.apiUrl);
 
     const treatement = (data: any) => {
 
-      let users: Object[] = [];
+      let users: characterId[] = [];
 
       for (let result of data.results) {
         let user = {

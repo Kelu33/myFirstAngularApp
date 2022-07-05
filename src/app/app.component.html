@@ -3,10 +3,11 @@
 <form [formGroup]="characterSelect">
     <label>
         Choose a character : 
-        <select (change)="onChange()" formControlName="nb">
-            <ng-template *ngFor="let char of characters">                
-                <option (value)="char.id">{{ char.name }}</option>
-            </ng-template>
+        <select (change)="onChange()" [(ngModel)]='selected' formControlName="nb">                            
+            <option 
+            *ngFor="let char of characters"
+            [value]="char.id"
+            >{{ char.name }}</option>            
         </select>
     </label>
 </form>

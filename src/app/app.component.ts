@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { LogInterceptor } from './core/log.interceptor';
 import { Character } from './models/character-model';
+import { characterId } from './models/characterId.model';
 import { RickService } from './rick.service';
 
 @Component({
@@ -11,7 +13,9 @@ import { RickService } from './rick.service';
 export class AppComponent implements OnInit { 
   title = 'Lucas';
 
-  characters: Object[] = [];
+  characters: characterId[] = [];
+
+  selected: string = '1';
 
   character = new Character('','','','','');
 
@@ -33,9 +37,8 @@ export class AppComponent implements OnInit {
       }
     );
     this.rick.getCharactersIdsAndNames().subscribe(
-      (param: Object[]) => {
+      (param: characterId[]) => {
         this.characters = param;
-
       }
     )
   }
