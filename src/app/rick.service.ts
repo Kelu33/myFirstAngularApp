@@ -28,9 +28,32 @@ export class RickService {
 
       return this.rick as Character;
       
-    }
+    }   
 
     return obs.pipe( map(treatement));
+  }
+
+  getCharactersIdsAndNames(): Observable<Object[]> {
+
+    const obs: Observable<any> = this.http.get(this.apiUrl);
+
+    const treatement = (data: any) => {
+
+      let users: Object[] = [];
+
+      for (let result of data.results) {
+        let user = {
+          id: result.id,
+          name: result.name
+        }
+        users.push(user);
+
+      }      
+      return users
+    }
+
+    return obs.pipe( map(treatement));    
+
   }
 
 }

@@ -1,4 +1,16 @@
 <h1>Bienvenue sur le site de {{ title }} !</h1>
+
+<form [formGroup]="characterSelect">
+    <label>
+        Choose a character : 
+        <select (change)="onChange()" formControlName="nb">
+            <ng-template *ngFor="let char of characters">                
+                <option (value)="char.id">{{ char.name }}</option>
+            </ng-template>
+        </select>
+    </label>
+</form>
+
 <div>
     <img [src]="character.image" [alt]="character.name">
     <h2>{{ character.name }}</h2>
@@ -6,10 +18,3 @@
     <p>Species: {{ character.species }}</p>
     <p>Location: {{ character.location }}</p>
 </div>
-
-<form (ngSubmit)="onSubmit('2')" [formGroup]="characterSelect">
-    <select formControlName="nb">
-        <option *ngFor="let i = index" value="1">1</option>
-    </select>
-    <button type="submit">submit</button>
-</form>

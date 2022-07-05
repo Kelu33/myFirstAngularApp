@@ -11,6 +11,8 @@ import { RickService } from './rick.service';
 export class AppComponent implements OnInit { 
   title = 'Lucas';
 
+  characters: Object[] = [];
+
   character = new Character('','','','','');
 
   characterSelect: FormGroup = this.formBuilder.group(
@@ -30,9 +32,16 @@ export class AppComponent implements OnInit {
         this.character = param;
       }
     );
+    this.rick.getCharactersIdsAndNames().subscribe(
+      (param: Object[]) => {
+        this.characters = param;
+
+      }
+    )
   }
 
-  onSubmit(nb: string): void {
+  onChange(): void {
+    const nb: string = this.characterSelect.value.nb;
     this.rick.getCharacter(nb).subscribe(
       (param: Character) => {
         this.character = param;

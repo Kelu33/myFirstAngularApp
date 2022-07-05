@@ -8,3 +8,10 @@ export class Character {
     ) {}
 
 }
+
+export class CharacterIdAndName {
+    constructor(
+        public id: string,
+        public name: string
+    ) {}
+}
