@@ -1,2 +1,26 @@
 <h1>Bienvenue sur le site de {{ title }} !</h1>
-<app-pokemon-list></app-pokemon-list>
+<ul>
+    <li>
+        <a [routerLink]="['/']">HOME</a>
+    </li>
+    <li>
+        <a [routerLink]="['/dashboard']">Dashboard</a>
+    </li>
+    <li>
+        <a [routerLink]="['/admin']">Admin</a>
+    </li>
+</ul>
+<form 
+    [formGroup]="setRoleForm"
+    (change)="onChange()"
+    >
+    <label>
+        Set Role
+        <select formControlName="role">
+            <option value="ANONYMOUS" selected>ANONYMOUS</option>
+            <option value="USER">USER</option>
+            <option value="ADMIN">ADMIN</option>
+        </select>            
+    </label>
+</form>
+<router-outlet></router-outlet>

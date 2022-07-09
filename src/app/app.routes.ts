@@ -1,26 +1,17 @@
 import { Routes } from "@angular/router";
-import { HomeComponent } from "./home/home.component";
-import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
-import { WcsComponent } from "./wcs/wcs.component";
+import { IsAdminGuard } from "./core/is-admin.guard";
+import { IsConnectedGuard } from "./core/is-connected.guard";
+import { AdminComponent } from "./pages/admin/admin.component";
+import { DashboardComponent } from "./pages/dashboard/dashboard.component";
+import { HomeComponent } from "./pages/home/home.component";
+import { UnauthorizedComponent } from "./pages/unauthorized/unauthorized.component";
 
 const ROUTES: Routes = [
-    {
-        path: '',
-        redirectTo: '/home',
-        pathMatch: 'full'
-    },
-    {
-        path: 'home',
-        component: HomeComponent
-    },
-    {
-        path: 'wcs/:name',
-        component: WcsComponent
-    },
-    {
-        path: '**',
-        component: PageNotFoundComponent
-    }     
+    { path: '', component: HomeComponent },
+    { path: 'dashboard', component: DashboardComponent, canActivate: [IsConnectedGuard] },
+    { path: 'admin', component: AdminComponent, canActivate: [IsAdminGuard] },
+    { path: '**', component: UnauthorizedComponent}
+     
 ];
 
 export { ROUTES };

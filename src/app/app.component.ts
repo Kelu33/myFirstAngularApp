@@ -1,38 +1,37 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { refValidator } from './custom-validators';
-import { Article } from './models/article.model';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
+import { UserService } from './services/user.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent { 
+export class AppComponent implements OnInit { 
   title = 'Lucas';
 
-  articlesList: Article[] = [];
-
-  articleForm: FormGroup = this.formBuilder.group({
-    ref: ['', [Validators.required, refValidator]],
-    name: ['', Validators.required],
-    description: ['', Validators.required]
-
+  setRoleForm: FormGroup = this.formBuider.group({
+    role: ['ANONYMOUS']
   })
 
-  constructor( private formBuilder: FormBuilder ) {}
+  constructor(
+    private formBuider: FormBuilder,
+    private userService: UserService,
+    private router: Router
+  ) {}
 
-  onSubmit(): void {
-    if (this.articleForm.valid) {
-      const controls = this.articleForm.controls;
-      this.articlesList.push(
-        new Article(
-          controls['ref'].value,
-          controls['name'].value,
-          controls['description'].value
-        )
-      )
-    }
+  ngOnInit(): void {
+    this.userService.setRole(this.setRoleForm.value.role);
+    console.log(this.userService.getRole())
   }
+
+  onChange(): void {
+    this.userService.setRole(this.setRoleForm.value.role);
+    this.router.navigate(['/']);
+    console.log(this.userService.getRole())
+  }
+
+
 }
 
